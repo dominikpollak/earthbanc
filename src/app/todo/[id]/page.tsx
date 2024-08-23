@@ -1,16 +1,29 @@
 "use client";
 
-import { fetchTodoDetail } from "@/src/services/todo";
+import GoBack from "@/src/components/global/GoBack";
+import { useFetchTodoDetail } from "@/src/services/todo";
 import { notFound } from "next/navigation";
+import styled from "styled-components";
+
+const Header = styled.h1`
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+`;
 
 const TodoDetailPage = ({ params: { id } }: { params: { id: string } }) => {
   const numId = parseInt(id);
-  if (isNaN(numId)) {
+  const query = useFetchTodoDetail(numId);
+
+  if (isNaN(numId) || query.error) {
     return notFound();
   }
 
-  const data = fetchTodoDetail(numId);
-  return <div>{id}</div>;
+  return (
+    <div>
+      <GoBack href="/" />
+      <Header>{query.data?.title}</Header>
+    </div>
+  );
 };
 
 export default TodoDetailPage;

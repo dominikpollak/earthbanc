@@ -1,9 +1,13 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Signika_Negative } from "next/font/google";
+import Navbar from "../components/layouts/Navbar";
+import Wrapper from "../components/layouts/Wrapper";
 import { ReactQueryClientProvider } from "../components/ReactQueryClientProvider";
+import { GlobalStyle } from "../lib/GlobalStyles";
+import StyledComponentsRegistry from "../lib/Registry";
 import "./globals.css";
 
-const inter = Inter({ subsets: ["latin"] });
+const signika = Signika_Negative({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Earthbanc",
@@ -18,7 +22,13 @@ export default function RootLayout({
   return (
     <ReactQueryClientProvider>
       <html lang="en">
-        <body className={inter.className}>{children}</body>
+        <body className={signika.className}>
+          <StyledComponentsRegistry>
+            <GlobalStyle />
+            <Navbar />
+            <Wrapper>{children}</Wrapper>
+          </StyledComponentsRegistry>
+        </body>
       </html>
     </ReactQueryClientProvider>
   );

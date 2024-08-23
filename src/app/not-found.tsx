@@ -1,11 +1,18 @@
-import Link from "next/link";
+"use client";
+
+import GoBack from "../components/global/GoBack";
+import { FlexColCenter, PageHeading, PageSubHeading } from "../styles/common";
 
 export default function NotFound() {
   return (
-    <div>
-      <h2>Not Found</h2>
-      <p>Could not find requested resource</p>
-      <Link href="/">Return Home</Link>
-    </div>
+    <FlexColCenter
+      style={{
+        marginTop: "30px",
+      }}
+    >
+      <PageHeading>Oops...</PageHeading>
+      <PageSubHeading>This page doesn&apos;t exist</PageSubHeading>
+      <GoBack href="/" />
+    </FlexColCenter>
   );
 }

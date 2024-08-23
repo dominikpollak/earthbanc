@@ -3,3 +3,11 @@
     color-scheme: dark;
   }
 }
+
+:root {
+  --text: #101010;
+  --background: #fff;
+  --primary: #004f5d;
+  --neutralGrey: #8c95a6;
+  --darkGrey: #595959;
+}

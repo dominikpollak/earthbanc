@@ -4,7 +4,7 @@ import { handleFetch } from "../utils/handleFetch";
 
 export const fetchTodoList = async () => {
   const url = "/posts";
-  return handleFetch<TodoListResponse>(url);
+  return handleFetch<TodoListResponse[]>(url);
 };
 
 export const useFetchTodoList = () =>
