@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { TodoListResponse } from "../types/todoTypes";
+import { TodoCreateRequest, TodoListResponse } from "../types/todoTypes";
 import { handleFetch } from "../utils/handleFetch";
 
 export const fetchTodoList = async () => {
@@ -23,3 +23,18 @@ export const useFetchTodoDetail = (id: number) =>
     queryKey: ["todoDetail", id],
     queryFn: () => fetchTodoDetail(id),
   });
+
+export const createTodo = async (data: TodoCreateRequest) => {
+  const url = "/posts";
+  return handleFetch<{ id: number }>(url, {
+    method: "POST",
+    body: JSON.stringify(data),
+  });
+};
+
+export const deleteTodo = async (id: number) => {
+  const url = `/posts/${id}`;
+  return handleFetch<void>(url, {
+    method: "DELETE",
+  });
+};

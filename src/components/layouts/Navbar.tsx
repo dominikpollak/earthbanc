@@ -1,6 +1,7 @@
 "use client";
 
 import { colors } from "@/src/app/constants/colors";
+import Link from "next/link";
 import styled from "styled-components";
 
 const Wrapper = styled.nav`
@@ -11,10 +12,18 @@ const Wrapper = styled.nav`
   align-items: center;
   padding: 0 15px;
   font-size: 1.5rem;
+
+  a {
+    color: white;
+  }
 `;
 
 const Navbar = () => {
-  return <Wrapper>Earthbanc TODO App</Wrapper>;
+  return (
+    <Wrapper>
+      <Link href="/">Earthbanc TODO App</Link>
+    </Wrapper>
+  );
 };
 
 export default Navbar;

@@ -39,8 +39,8 @@ const Skeleton = styled.div<{
 `;
 
 type Props = {
-  height: string;
-  width: string;
+  height?: string;
+  width?: string;
   maxHeight?: string;
   maxWidth?: string;
   margin?: string;

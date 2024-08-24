@@ -5,6 +5,7 @@ import styled from "styled-components";
 const Wrapper = styled(Link)`
   display: flex;
   align-items: center;
+  width: fit-content;
 
   span {
     font-weight: bold;

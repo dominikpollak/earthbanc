@@ -22,7 +22,7 @@ const fetchWithTimeout = (
       () => reject(new Error("Request timed out")),
       timeout
     );
-    fetch(url, { ...options, mode: "cors" })
+    fetch(url, options)
       .then((response) => {
         clearTimeout(timer);
         resolve(response);
@@ -39,7 +39,7 @@ export const handleFetch = async <T>(
   options?: FetchOptions
 ): Promise<T> => {
   const fullUrl = getUrl(url, options?.params);
-  const timeout = options?.timeout ?? 30000;
+  const timeout = options?.timeout ?? 10000;
   const retryCount = options?.retryCount ?? 2;
   const headers = options?.headers;
 
@@ -47,6 +47,7 @@ export const handleFetch = async <T>(
     try {
       const response = await fetchWithTimeout(fullUrl, timeout, {
         headers,
+        method: options?.method ?? "GET",
       });
 
       if (!response.ok) {

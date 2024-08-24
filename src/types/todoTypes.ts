@@ -11,3 +11,5 @@ export interface TodoDetailResponse {
   title: string;
   body: string;
 }
+
+export type TodoCreateRequest = Omit<TodoListResponse, "id" | "userId">;

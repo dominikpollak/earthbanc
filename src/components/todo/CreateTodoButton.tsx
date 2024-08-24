@@ -10,7 +10,7 @@ const Create = styled(Link)`
   bottom: 15px;
   right: 15px;
   border-radius: 50%;
-  background-color: ${colors.primary};
+  background-color: ${colors.secondary};
   display: flex;
   justify-content: center;
   align-items: center;
