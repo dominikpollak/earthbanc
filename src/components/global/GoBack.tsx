@@ -15,11 +15,12 @@ const Wrapper = styled(Link)`
 
 interface Props {
   href: string;
+  style?: React.CSSProperties;
 }
 
-const GoBack = ({ href }: Props) => {
+const GoBack = ({ href, style }: Props) => {
   return (
-    <Wrapper href={href}>
+    <Wrapper href={href} style={style}>
       <ChevronLeft size={22} strokeWidth={3} /> <span>Back</span>
     </Wrapper>
   );

@@ -1,14 +1,14 @@
 "use client";
 
 import GoBack from "@/src/components/global/GoBack";
-import { createTodo } from "@/src/services/todo";
+import { updateTodo, useFetchTodoDetail } from "@/src/services/todo";
 import { PageHeading } from "@/src/styles/common";
-import { useRouter } from "next/navigation";
-import React from "react";
+import { notFound, useRouter } from "next/navigation";
+import React, { useEffect, useState } from "react";
 import { toast } from "sonner";
 import styled from "styled-components";
-import { media } from "../constants/breakpoints";
-import { colors } from "../constants/colors";
+import { media } from "../../../constants/breakpoints";
+import { colors } from "../../../constants/colors";
 
 const FormContainer = styled.form`
   width: 100%;
@@ -59,8 +59,12 @@ const DescriptionInput = styled.textarea`
   border-radius: 4px;
 `;
 
-const CreateTodo = () => {
+const UpdateTodo = ({ params: { id } }: { params: { id: string } }) => {
+  const numId = parseInt(id);
   const router = useRouter();
+  const query = useFetchTodoDetail(numId);
+  const [name, setName] = useState("");
+  const [description, setDescription] = useState("");
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -69,36 +73,51 @@ const CreateTodo = () => {
     const taskDescription = formData.get("taskDescription") as string;
 
     try {
-      await createTodo({
+      await updateTodo(numId, {
         title: taskName,
         body: taskDescription,
       });
       router.push("/");
-      toast.success("Task created successfully");
+      toast.success("Task updated successfully");
     } catch (error) {
-      toast.error("Failed to create task");
+      toast.error("Failed to update task");
     }
   };
+
+  useEffect(() => {
+    if (query.data) {
+      setName(query.data.title);
+      setDescription(query.data.body);
+    }
+  }, [query.data]);
+
+  if (isNaN(numId) || query.error) {
+    return notFound();
+  }
 
   return (
     <FormContainer onSubmit={handleSubmit}>
       <GoBack href="/" style={{ marginRight: "auto" }} />
-      <PageHeading>Create Task</PageHeading>
+      <PageHeading>Update Task</PageHeading>
       <HeaderInput
         type="text"
         placeholder="Task Name"
+        value={name}
+        onChange={(e) => setName(e.target.value)}
         name="taskName"
         required
       />
       <DescriptionInput
         placeholder="Task Description"
+        value={description}
+        onChange={(e) => setDescription(e.target.value)}
         name="taskDescription"
         rows={8}
         required
       />
-      <Button type="submit">Create</Button>
+      <Button type="submit">Update</Button>
     </FormContainer>
   );
 };
 
-export default CreateTodo;
+export default UpdateTodo;

@@ -14,7 +14,7 @@ export const useFetchTodoList = () =>
   });
 
 export const fetchTodoDetail = async (id: number) => {
-  const url = `/posts/${id}`;
+  const url = `posts/${id}`;
   return handleFetch<TodoListResponse>(url);
 };
 
@@ -25,7 +25,7 @@ export const useFetchTodoDetail = (id: number) =>
   });
 
 export const createTodo = async (data: TodoCreateRequest) => {
-  const url = "/posts";
+  const url = "posts";
   return handleFetch<{ id: number }>(url, {
     method: "POST",
     body: JSON.stringify(data),
@@ -33,8 +33,16 @@ export const createTodo = async (data: TodoCreateRequest) => {
 };
 
 export const deleteTodo = async (id: number) => {
-  const url = `/posts/${id}`;
+  const url = `posts/${id}`;
   return handleFetch<void>(url, {
     method: "DELETE",
+  });
+};
+
+export const updateTodo = async (id: number, data: TodoCreateRequest) => {
+  const url = `posts/${id}`;
+  return handleFetch<void>(url, {
+    method: "PUT",
+    body: JSON.stringify(data),
   });
 };

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Signika_Negative } from "next/font/google";
+import { Toaster } from "sonner";
 import Navbar from "../components/layouts/Navbar";
 import Wrapper from "../components/layouts/Wrapper";
 import { ReactQueryClientProvider } from "../components/ReactQueryClientProvider";
@@ -25,6 +26,7 @@ export default function RootLayout({
         <body className={signika.className}>
           <StyledComponentsRegistry>
             <GlobalStyle />
+            <Toaster visibleToasts={1} />
             <Navbar />
             <Wrapper>{children}</Wrapper>
           </StyledComponentsRegistry>
