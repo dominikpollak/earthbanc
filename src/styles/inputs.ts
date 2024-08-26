@@ -12,6 +12,7 @@ export const HeaderInput = styled.input`
   color: ${colors.text};
   border-radius: 4px;
   font-size: 1.2rem;
+  box-sizing: border-box;
   ${media.tablet} {
     font-size: 1.5rem;
   }
@@ -23,6 +24,7 @@ export const DescriptionInput = styled.textarea`
   width: 100%;
   max-width: 600px;
   border: 1px solid ${colors.neutralGrey};
+  box-sizing: border-box;
   background-color: white;
   color: ${colors.text};
   border-radius: 4px;
