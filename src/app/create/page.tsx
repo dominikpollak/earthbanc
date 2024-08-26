@@ -1,13 +1,14 @@
 "use client";
 
+import Button from "@/src/components/global/Button";
 import GoBack from "@/src/components/global/GoBack";
 import { createTodo } from "@/src/services/todo";
 import { PageHeading } from "@/src/styles/common";
+import { DescriptionInput, HeaderInput } from "@/src/styles/inputs";
 import { useRouter } from "next/navigation";
 import React from "react";
 import { toast } from "sonner";
 import styled from "styled-components";
-import { media } from "../constants/breakpoints";
 import { colors } from "../constants/colors";
 
 const FormContainer = styled.form`
@@ -16,47 +17,6 @@ const FormContainer = styled.form`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-`;
-
-const Button = styled.button`
-  margin-top: 20px;
-  padding: 10px 20px;
-  background-color: ${colors.secondary};
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: all 0.2s;
-
-  &:hover {
-    background-color: ${colors.primary};
-  }
-`;
-
-const HeaderInput = styled.input`
-  margin: 10px 0;
-  padding: 10px;
-  width: 100%;
-  max-width: 600px;
-  border: 1px solid ${colors.neutralGrey};
-  background-color: white;
-  color: ${colors.text};
-  border-radius: 4px;
-  font-size: 1.2rem;
-  ${media.tablet} {
-    font-size: 1.5rem;
-  }
-`;
-
-const DescriptionInput = styled.textarea`
-  margin: 10px 0;
-  padding: 10px;
-  width: 100%;
-  max-width: 600px;
-  border: 1px solid ${colors.neutralGrey};
-  background-color: white;
-  color: ${colors.text};
-  border-radius: 4px;
 `;
 
 const CreateTodo = () => {
@@ -96,7 +56,12 @@ const CreateTodo = () => {
         rows={8}
         required
       />
-      <Button type="submit">Create</Button>
+      <Button
+        label="Create"
+        type="submit"
+        color={colors.secondary}
+        style={{ marginTop: "10px" }}
+      />
     </FormContainer>
   );
 };

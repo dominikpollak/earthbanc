@@ -43,6 +43,7 @@ interface Props {
   size?: "sm" | "lg";
   onClick?: () => void;
   href?: string;
+  style?: React.CSSProperties;
 }
 
 const Button = ({
@@ -52,15 +53,22 @@ const Button = ({
   label,
   onClick,
   href,
+  style,
 }: Props) => {
   return (
     <>
       {href ? (
-        <LinkStyle color={color} size={size} href={href}>
+        <LinkStyle color={color} size={size} href={href} style={style}>
           {label}
         </LinkStyle>
       ) : (
-        <ButtonStyle type={type} onClick={onClick} color={color} size={size}>
+        <ButtonStyle
+          type={type}
+          onClick={onClick}
+          color={color}
+          size={size}
+          style={style}
+        >
           {label}
         </ButtonStyle>
       )}

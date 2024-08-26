@@ -16,7 +16,7 @@ export default function Home() {
           <>
             {Array.from({ length: 30 }).map((_, index) => (
               <LoadingSkeleton
-                height="209px"
+                height="229px"
                 width="100%"
                 key={index}
                 borderRadius="15px"
