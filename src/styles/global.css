@@ -1,0 +1,67 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #be9e4b;
+  --color-secondary: #3e2406;
+  --color-tertiary: #e7ce81;
+  --color-background: #bf9e78;
+}
+
+html,
+body {
+  font-family: "Instrument Sans", sans-serif;
+  /* Apply the texture as a background image */
+}
+
+button {
+  cursor: pointer;
+}
+
+.textured-content-bg {
+  position: relative; /* Crucial for positioning its ::before pseudo-element */
+  overflow: hidden; /* If you have rounded corners and texture, this helps */
+  z-index: 0; /* Give it a z-index to form a new stacking context */
+}
+
+.textured-content-bg::before {
+  content: "";
+  position: absolute; /* Positioned relative to .textured-content-bg */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("/src/assets/texture2.webp");
+  background-repeat: repeat;
+  background-size: 600px; /* Or contain, or specify dimensions */
+  background-attachment: scroll; /* Scrolls with the content div */
+  opacity: 0.3; /* Opacity for this inner texture */
+  z-index: -1; /* Send this texture behind the content within .textured-content-bg */
+  border-radius: inherit; /* Inherit border-radius from parent if it has it */
+  filter: blur(0.2px) contrast(1.2);
+}
+
+body::before {
+  content: "";
+  position: fixed; /* Fixed to cover the entire viewport */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("/src/assets/texture2.webp"); /* Use your image path */
+  background-repeat: repeat;
+  background-size: 1000px 1000px; /* Or whatever size you prefer */
+  background-attachment: fixed;
+  opacity: 0.3; /* This opacity will only apply to the pseudo-element's background */
+  z-index: -1; /* Send it behind all other content */
+}
+
+li {
+  margin: 0.5rem 0;
+  padding-left: 1rem;
+  /* disk */
+  list-style: none;
+}
+
+ul {
+  margin-bottom: 1.5rem;
+}

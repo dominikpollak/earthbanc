@@ -1,0 +1,25 @@
+---
+import type {t, Locale } from '../utils/i18n';
+
+interface Props {
+  locale: Locale;
+  title?: string;
+}
+
+const { locale, title } = Astro.props;
+---
+
+<html lang={locale}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <title>{title ? title : 'My Astro App'}</title>
+      <link rel="icon" type="image/x-icon" href="/favicon.svg">
+  </head>
+  <body class="bg-secondary">
+    <slot />
+  </body>
+</html>

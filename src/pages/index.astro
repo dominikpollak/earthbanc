@@ -1,0 +1,19 @@
+---
+// src/pages/index.astro
+// Redirect to the default English locale
+export const prerender = true; // Ensure this page is pre-rendered for the redirect
+
+export function getStaticPaths() {
+  return [
+    { params: {} } // An empty params object for the root path
+  ];
+}
+
+const defaultLocale = 'en'; // Your preferred default locale
+
+// Construct the redirect URL, ensuring it's an absolute path
+const redirectUrl = `/${defaultLocale}/`;
+
+// Use a response with a redirect status code
+return Astro.redirect(redirectUrl);
+---

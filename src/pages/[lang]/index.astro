@@ -1,0 +1,43 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Navbar from '../../components/Navbar';
+import ContactUs from '../../components/ContactUs';
+import ProductPreview from '../../components/ProductPreview';
+import "../../styles/global.css";
+import { t, type Locale } from '../../utils/i18n';
+import Lion from "../../assets/lion.svg"
+
+export async function getStaticPaths() {
+  return [
+    { params: { lang: 'en' } },
+    { params: { lang: 'cs' } },
+  ];
+}
+
+const { lang } = Astro.params;
+const locale: Locale = lang as Locale || 'en';
+
+---
+
+<BaseLayout locale={locale} title={"GOLDENLION | "+t('heading', locale)}>
+  
+  <Navbar client:load locale={locale} /> 
+  <main class="relative p-2 text-center z-20">
+    <div class="bg-gradient-to-l textured-content-bg from-[#ab8b67] to-[#e7c081] shadow-xl py-10 px-6 md:px-16 rounded-xl min-h-[calc(180vh-60px)] h-full w-full max-w-[800px] mx-auto relative z-10 brightness-110">
+        <button class="relative h-52 w-52 mx-auto">
+           <img src={Lion.src} alt="Golden Lion Logo" class="mx-auto brightness-125 mb-4 w-52 h-52 z-50 absolute left-0 top-0" />
+        </button>
+      <section class="flex flex-col max-w-[800px] mx-auto items-end z-20 mt-6">
+          <h1 class="text-[40px] text-secondary font-extrabold z-20">{t("heading", locale)}</h1>
+          <h2 class="text-tertiary text-4xl font-bold z-20 mt-10">{t("subheading2", locale)}</h2>
+          <h2 class="text-tertiary text-4xl font-bold z-20">{t("subheading", locale)}</h2>
+        </section>
+        <ProductPreview locale={locale} client:load />
+        <section id="about" class="mt-16">
+          <h2 class="text-secondary text-3xl font-bold z-20 mt-10">{t("aboutHeading", locale)}</h2>
+            <div class="text-left mt-6 font-medium" set:html={t("aboutContent", locale)}/>
+        </section>
+        <ContactUs locale={locale} client:load />
+    </div>
+</main>
+</BaseLayout>
